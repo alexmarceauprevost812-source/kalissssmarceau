@@ -1,28 +1,57 @@
-# kalliiimarceau
+# kalissssmarceau
 
-Projet local créé avec TI-LEX CODEX.
+Outil Python avec interface graphique pour Kali Linux.
 
-## Installation
+> Utilise cet outil uniquement sur tes propres appareils, tes propres fichiers et des systèmes pour lesquels tu as une autorisation.
 
-### Kali Linux
+## Installation sur Kali Linux
 
-1. Ouvrez un terminal.
-2. Exécutez les commandes suivantes :
+Ouvre un terminal et exécute :
 
 ```bash
-choco install -y git
-git clone https://github.com/your-repo/your-project.git
-cd your-project
+sudo apt update
+sudo apt install -y git python3 python3-tk
+
+cd ~
+git clone https://github.com/alexmarceauprevost812-source/kalissssmarceau.git
+cd kalissssmarceau
 ```
 
-### Windows
+## Lancer l'outil
 
-1. Ouvrez un terminal (PowerShell ou Command Prompt).
-2. Exécutez les commandes suivantes :
+Depuis le dossier du projet :
 
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-WebRequest -Uri "https://github.com/alexmarceauprevost812-sourc/kalliiimarceau/archive/refs/heads/main.zip" -OutFile "project.zip"
-Expand-Archive -Path "project.zip" -DestinationPath "."
-cd your-project
+```bash
+cd ~/kalissssmarceau
+python3 interface_choix.py
+```
+
+## Mettre l'outil à jour
+
+```bash
+cd ~/kalissssmarceau
+git checkout main
+git pull origin main
+python3 interface_choix.py
+```
+
+## Si le dossier existe déjà
+
+Ne refais pas `git clone`. Utilise simplement :
+
+```bash
+cd ~/kalissssmarceau
+git checkout main
+git pull origin main
+python3 interface_choix.py
+```
+
+## Important
+
+Le fichier `kali_install.sh` sert à installer/configurer des paquets Kali et n'est pas nécessaire pour lancer l'interface de cet outil.
+
+Le point d'entrée graphique du projet est :
+
+```text
+interface_choix.py
 ```
