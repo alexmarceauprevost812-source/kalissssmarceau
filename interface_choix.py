@@ -44,10 +44,18 @@ class ToolSelectorApp:
     
     def run_scam_open_port(self, target):
         try:
-            result = subprocess.run(['python3', 'list_ports.py', target], capture_output=True, text=True, check=True)
-            messagebox.showinfo("Result", result.stdout)
+            python_cmd = "python" if subprocess.os.name == "nt" else "python3"
+            result = subprocess.run(
+                [python_cmd, "list_ports.py", target],
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            messagebox.showinfo("Résultat", result.stdout)
         except subprocess.CalledProcessError as e:
-            messagebox.showerror("Error", e.stderr)
+            messagebox.showerror("Erreur", (e.stderr or e.stdout or "Le scan a échoué.").strip())
+        except Exception as e:
+            messagebox.showerror("Erreur", str(e))
     
     def run_file_selector(self, target):
         file_path = filedialog.askopenfilename(filetypes=[("Python Files", "*.py")])
