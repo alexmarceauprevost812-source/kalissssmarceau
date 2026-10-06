@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
 import subprocess
+import os
+import threading
 
 class ToolSelectorApp:
     def __init__(self, root):
