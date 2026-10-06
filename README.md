@@ -22,7 +22,7 @@ cd your-project
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-WebRequest -Uri "https://github.com/your-repo/your-project/archive/refs/heads/main.zip" -OutFile "project.zip"
+Invoke-WebRequest -Uri "https://github.com/alexmarceauprevost812-sourc/kalliiimarceau/archive/refs/heads/main.zip" -OutFile "project.zip"
 Expand-Archive -Path "project.zip" -DestinationPath "."
 cd your-project
 ```
