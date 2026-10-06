@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Capable de Parler - Automatisation Outils Kali Linux</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-size: 24px;
+            text-align: center;
+        }
+        h1 {
+            color: lime;
+        }
+        .menu {
+            color: red;
+            font-size: 20px;
+        }
+        .menu a {
+            color: red;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>IA Capable de Parler - Automatisation Outils Kali Linux</h1><br><input type="text" id="target-input" placeholder="Target" style="color: red;" disabled><br><p>IA est capable de parler</p><br><a href="https://github.com/your-repo-url" target="_blank">View Project Repo</a>
+    <div class="menu">
+        <a href="#nmap">Nmap</a><a href="#metasploit">Metasploit</a>
+        <a href="#tools">Tools</a>
+    </div>
+    <div id="nmap">
+        <h2>NMAP</h2><h2>Metasploit</h2>
+        <form id="nmap-form">
+            <label for="target">Target:</label>
+            <input type="text" id="target" name="target" placeholder="Enter target IP or domain" style="color: red;">
+            <button type="submit" style="background-color: orange; color: black;">Run</button>
+        </form>
+        <div id="nmap-results" style="color: white;"></div>
+    </div>
+    <div id="metasploit">
+        <h2>Metasploit</h2>
+        <form id="metasploit-form">
+            <label for="module">Module:</label>
+            <input type="text" id="module" name="module" placeholder="Enter module name" style="color: red;">
+            <button type="submit" style="background-color: orange; color: black;">Run</button>
+        </form>
+        <div id="metasploit-results" style="color: white;"></div>
+    </div>
+    <div id="tools">
+        <h2>Tools</h2>
+        <ul>
+            <li><a href="https://nmap.org/" target="_blank">Nmap</a></li>
+            <li><a href="https://metasploit.com/" target="_blank">Metasploit</a></li>
+            <li><a href="https://www.wireshark.org/" target="_blank">Wireshark</a></li>
+            <li><a href="https://www.openwall.com/john/" target="_blank">John the Ripper</a></li>
+            <li><a href="https://hydra.cc/" target="_blank">Hydra</a></li>
+            <li><a href="https://sqlmap.org/" target="_blank">SQLmap</a></li>
+            <li><a href="https://portswigger.net/burp" target="_blank">Burp Suite</a></li>
+            <li><a href="https://hashcat.net/" target="_blank">Hashcat</a></li>
+            <li><a href="https://medusa.cracklib.net/" target="_blank">Medusa</a></li>
+            <li><a href="https://nmap.org/nikto/" target="_blank">Nikto</a></li>
+        </ul>
+    </div>
+    <script>
+        document.getElementById('nmap-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const target = document.getElementById('target').value;
+            if (target) {
+                fetch(`/nmap?target=${target}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('nmap-results').innerHTML = data;
+                    })
+                    .catch(error => {
+                        document.getElementById('nmap-results').innerHTML = `Error: ${error}`;
+                    });
+            } else {
+                document.getElementById('nmap-results').innerHTML = 'Please enter a target.';
+            }
+        });
+
+        document.getElementById('metasploit-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const module = document.getElementById('module').value;
+            if (module) {
+                fetch(`/metasploit?module=${module}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('metasploit-results').innerHTML = data;
+                    })
+                    .catch(error => {
+                        document.getElementById('metasploit-results').innerHTML = `Error: ${error}`;
+                    });
+            } else {
+                document.getElementById('metasploit-results').innerHTML = 'Please enter a module.';
+            }
+        });
+    </script>
+</body>
+</html>
