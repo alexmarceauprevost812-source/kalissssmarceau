@@ -1,3 +1,5 @@
+# kalliiimarceau
+
 Projet local créé avec TI-LEX CODEX.
 
 ## Installation
@@ -8,8 +10,7 @@ Projet local créé avec TI-LEX CODEX.
 2. Exécutez les commandes suivantes :
 
 ```bash
-sudo apt update
-sudo apt install -y curl git
+choco install -y git
 git clone https://github.com/your-repo/your-project.git
 cd your-project
 ```
@@ -23,5 +24,5 @@ cd your-project
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-WebRequest -Uri "https://github.com/your-repo/your-project/archive/refs/heads/main.zip" -OutFile "project.zip"
 Expand-Archive -Path "project.zip" -DestinationPath "."
-cd your-project-main
+cd your-project
 ```
