@@ -43,19 +43,27 @@ class ToolSelectorApp:
             self.run_analyze_web_sql_injection(target)
     
     def run_scam_open_port(self, target):
-        try:
-            python_cmd = "python" if subprocess.os.name == "nt" else "python3"
-            result = subprocess.run(
-                [python_cmd, "list_ports.py", target],
-                capture_output=True,
-                text=True,
-                check=True,
-            )
-            messagebox.showinfo("Résultat", result.stdout)
-        except subprocess.CalledProcessError as e:
-            messagebox.showerror("Erreur", (e.stderr or e.stdout or "Le scan a échoué.").strip())
-        except Exception as e:
-            messagebox.showerror("Erreur", str(e))
+        messagebox.showinfo("Scan", f"Scan local lancé sur {target}. L'interface reste utilisable.")
+
+        def worker():
+            try:
+                python_cmd = "python" if os.name == "nt" else "python3"
+                result = subprocess.run(
+                    [python_cmd, "list_ports.py", target],
+                    capture_output=True,
+                    text=True,
+                    check=True,
+                )
+                output = result.stdout.strip() or "Scan terminé."
+                self.root.after(0, lambda: messagebox.showinfo("Résultat", output))
+            except subprocess.CalledProcessError as e:
+                msg = (e.stderr or e.stdout or "Le scan a échoué.").strip()
+                self.root.after(0, lambda: messagebox.showerror("Erreur", msg))
+            except Exception as e:
+                msg = str(e)
+                self.root.after(0, lambda: messagebox.showerror("Erreur", msg))
+
+        threading.Thread(target=worker, daemon=True).start()
     
     def run_file_selector(self, target):
         file_path = filedialog.askopenfilename(filetypes=[("Python Files", "*.py")])
