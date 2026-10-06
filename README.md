@@ -1,61 +1,91 @@
-# README.md
+# kalissssmarceau
 
-Ce fichier est un exemple de README.md. Il contient des informations sur le projet, ses fonctionnalités et comment l'utiliser.
+Outil Python en ligne de commande pour regrouper des tests système et des fonctions d'automatisation sur Kali Linux.
 
-## Installation
+> Utilise cet outil uniquement sur tes propres appareils, tes propres projets et tes environnements de laboratoire autorisés.
 
-Pour installer le projet, suivez ces étapes :
+## Prérequis
 
-1. Clonez le dépôt sur votre ordinateur.
-   ```bash
-   git clone https://github.com/votre-nom-de-repo/votre-projet.git
-   ```
-2. Installez les dépendances en exécutant `npm install`.
-   ```bash
-   cd votre-projet
-   npm install
-   ```
-3. Lancez le projet avec `npm start`.
-   ```bash
-   npm start
-   ```
+- Kali Linux / Linux recommandé
+- Python 3
+- Git
 
-## Fonctionnalités
+Vérification :
 
-- Fonctionnalité 1
-- Fonctionnalité 2
-- Fonctionnalité 3
+```bash
+python3 --version
+git --version
+```
 
-## Contribution
+## Installation sur Kali Linux
 
-Si vous souhaitez contribuer au projet, suivez ces étapes :
+```bash
+git clone https://github.com/alexmarceauprevost812-source/kalissssmarceau.git
+cd kalissssmarceau
+```
 
-1. Forkez le dépôt.
-   ```bash
-   git clone https://github.com/votre-nom-de-repo/votre-projet.git
-   ```
-2. Créez une nouvelle branche pour vos modifications.
-   ```bash
-   git checkout -b votre-nouvelle-branche
-   ```
-3. Faites vos modifications et faites un commit.
-   ```bash
-   git add .
-   git commit -m "Votre message de commit"
-   ```
-4. Envoyez une pull request.
-   ```bash
-   git push origin votre-nouvelle-branche
-   ```
+Aucune commande `npm install` n'est nécessaire : ce projet est en Python et les fichiers principaux utilisent la bibliothèque standard.
 
-## License
+## Lancer l'outil principal
 
-Ce projet est sous licence MIT. Consultez le fichier LICENSE pour plus de détails.
-<!-- TI-LEX-CODEX-SUMMARY:START -->
-## Dernière action TI-LEX CODEX
+```bash
+python3 kali_tools_automation.py
+```
 
-- **Commande :** CAPABLE ET COPATIBLE DE POWERSELL
-- **Résultat :** MODE PRO • 2 fichier(s) modifié(s).
-- **Fichiers :** conversation_manager.py, index.html
-- **Mise à jour :** 2026-10-06 13:21:38
-<!-- TI-LEX-CODEX-SUMMARY:END -->
+## Lancer les tests système
+
+```bash
+python3 test_kali.py
+```
+
+## Autres scripts du dépôt
+
+- `kali_tools_automation.py` : menu principal.
+- `test_kali.py` : tests système locaux.
+- `install_kali_tools.py` : script expérimental d'installation; certaines commandes sont spécifiques à Linux et doivent être revues avant utilisation.
+- `kali_termus.py` : prototype de menu terminal.
+- `conversation_manager.py` : prototype de conversation; ce fichier contient encore du code expérimental à corriger.
+- `index.html` : interface HTML/prototype.
+
+## PowerShell / Windows
+
+PowerShell peut servir à cloner et ouvrir le projet :
+
+```powershell
+git clone https://github.com/alexmarceauprevost812-source/kalissssmarceau.git
+cd .\kalissssmarceau
+```
+
+Les scripts contiennent toutefois plusieurs commandes Linux (`df`, `apt-get`, etc.). Pour les exécuter correctement, utilise Kali Linux ou un environnement Linux compatible plutôt que de considérer le projet comme entièrement compatible Windows.
+
+## Mise à jour du projet
+
+Depuis le dossier du projet :
+
+```bash
+git pull origin main
+```
+
+## Structure
+
+```text
+kalissssmarceau/
+├── README.md
+├── kali_tools_automation.py
+├── test_kali.py
+├── install_kali_tools.py
+├── install_kali_tools.sh
+├── kali_termus.py
+├── conversation_manager.py
+├── cookie_manager.py
+├── index.html
+└── cookies.txt
+```
+
+## Démarrage rapide
+
+```bash
+git clone https://github.com/alexmarceauprevost812-source/kalissssmarceau.git
+cd kalissssmarceau
+python3 kali_tools_automation.py
+```
