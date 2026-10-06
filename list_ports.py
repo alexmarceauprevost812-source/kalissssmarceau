@@ -3,6 +3,7 @@
 import ipaddress
 import socket
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 def normalize_target(raw: str) -> str:
@@ -21,16 +22,30 @@ def normalize_target(raw: str) -> str:
     return str(ip)
 
 
+def _port_open(host: str, port: int) -> int | None:
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            sock.settimeout(0.08)
+            if sock.connect_ex((host, port)) == 0:
+                return port
+    except OSError:
+        pass
+    return None
+
+
 def list_open_ports(host: str, start_port: int = 1, end_port: int = 1024):
+    ports = range(start_port, end_port + 1)
     open_ports = []
 
-    for port in range(start_port, end_port + 1):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.settimeout(0.15)
-            if sock.connect_ex((host, port)) == 0:
+    # Nombre limité de workers pour rester léger sur un réseau local.
+    with ThreadPoolExecutor(max_workers=48) as executor:
+        futures = [executor.submit(_port_open, host, port) for port in ports]
+        for future in as_completed(futures):
+            port = future.result()
+            if port is not None:
                 open_ports.append(port)
 
-    return open_ports
+    return sorted(open_ports)
 
 
 def main():
